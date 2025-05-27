@@ -1,10 +1,10 @@
 # Movie Hangman Game
 
-A Pygame-based hangman game where players guess movie titles to save a kangaroo from a noose.
+A Pygame-based hangman game where players guess movie titles to save a kangaroo from a noose. I created this game using Q CLI. 
 
 ## Game Description
 
-In this game, players must guess the letters of a movie title within 2 minutes. If you guess the title correctly, you save the kangaroo. If time runs out, the kangaroo remains sad on the noose.
+In this game, players must guess the letters of a movie title within 2 minutes. If you guess the title correctly, you save the kangaroo. If time runs out, the kangaroo remains sad on the noose. We used to play a flash version of this game while I was studying in College of Engineering, Trivandrum. 
 
 The game features:
 - 100+ popular movie titles to guess
@@ -73,17 +73,6 @@ python movie_hangman.py
 - **R key**: Restart the game after it ends
 - **Q key**: Quit the game
 
-## Game Features
-
-- **Movie Database**: Contains 100+ popular movie titles from various genres
-- **Visual Feedback**: 
-  - Worried kangaroo during gameplay
-  - Happy kangaroo when you win
-  - Sad kangaroo when you lose
-- **Timer**: 2-minute countdown that stops when you guess correctly
-- **Letter Tracking**: Shows all letters you've already guessed
-- **Responsive Design**: Letter boxes adjust to fit movie titles of different lengths
-
 ## Project Structure
 
 - `movie_hangman.py`: Main game file
@@ -105,7 +94,7 @@ If you encounter any issues:
 
 ## Credits
 
-- Game developed using Pygame
+- Game developed using [Pygame](https://www.pygame.org/news)
 - Kangaroo character images and game concept created using AI for educational purposes
 
 ## License
