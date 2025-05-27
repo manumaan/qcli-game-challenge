@@ -1,0 +1,12 @@
+# Python 3.13.3 or compatible version required
+# Created for Movie Hangman Game
+
+# Core dependencies
+pygame==2.6.1
+
+# System dependencies
+# Note: These are automatically installed with pygame on most systems
+# - SDL2
+# - SDL2_image
+# - SDL2_mixer
+# - SDL2_ttf
