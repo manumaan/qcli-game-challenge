@@ -22,7 +22,7 @@ The game features:
 ### Step 1: Clone the Repository
 ```bash
 git clone <repository-url>
-cd qgame
+cd qcli-game-challenge
 ```
 
 ### Step 2: Set Up a Virtual Environment (Optional but Recommended)
