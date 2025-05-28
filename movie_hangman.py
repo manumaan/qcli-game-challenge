@@ -9,7 +9,7 @@ from pygame.locals import *
 pygame.init()
 
 # Screen dimensions
-SCREEN_WIDTH = 1400  # Increased from 1200 to 1400 to accommodate very long movie titles
+SCREEN_WIDTH = 1134  # Reduced by another 10% from 1260
 SCREEN_HEIGHT = 700  # Increased from 600 to 700 to provide more vertical space
 SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Hangaroo 2025")
