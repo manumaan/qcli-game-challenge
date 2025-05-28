@@ -3,10 +3,21 @@ import sys
 import random
 import time
 import argparse
+import os
 from pygame.locals import *
 
 # Initialize pygame
 pygame.init()
+
+# Resource path helper function
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
 
 # Screen dimensions
 SCREEN_WIDTH = 1134  # Reduced by another 10% from 1260
@@ -148,10 +159,10 @@ class MovieHangman:
         
         # Load images
         try:
-            self.worried_kangaroo = pygame.image.load("worried_kangaroo.png")
-            self.happy_kangaroo = pygame.image.load("happy_kangaroo.png")
-            self.sad_kangaroo = pygame.image.load("sad_kangaroo.png")
-            self.noose = pygame.image.load("noose.png")
+            self.worried_kangaroo = pygame.image.load(resource_path("worried_kangaroo.png"))
+            self.happy_kangaroo = pygame.image.load(resource_path("happy_kangaroo.png"))
+            self.sad_kangaroo = pygame.image.load(resource_path("sad_kangaroo.png"))
+            self.noose = pygame.image.load(resource_path("noose.png"))
         except pygame.error:
             # Fallback to placeholders if images can't be loaded
             self.worried_kangaroo = self.create_placeholder("Worried Kangaroo", (255, 215, 0), (200, 200))
