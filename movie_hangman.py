@@ -2,16 +2,17 @@ import pygame
 import sys
 import random
 import time
+import argparse
 from pygame.locals import *
 
 # Initialize pygame
 pygame.init()
 
 # Screen dimensions
-SCREEN_WIDTH = 1000  # Increased from 800 to 1000 to accommodate longer movie titles
+SCREEN_WIDTH = 1400  # Increased from 1200 to 1400 to accommodate very long movie titles
 SCREEN_HEIGHT = 700  # Increased from 600 to 700 to provide more vertical space
 SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption("Movie Hangman")
+pygame.display.set_caption("Hangaroo 2025")
 
 # Colors
 WHITE = (255, 255, 255)
@@ -132,8 +133,11 @@ movie_list = [
 ]
 
 class MovieHangman:
-    def __init__(self):
-        self.movie = random.choice(movie_list)
+    def __init__(self, custom_movie=None):
+        if custom_movie:
+            self.movie = custom_movie.upper()
+        else:
+            self.movie = random.choice(movie_list)
         self.guessed_letters = set()
         self.start_time = time.time()
         self.game_over = False
@@ -172,9 +176,9 @@ class MovieHangman:
         return surface
     
     def create_letter_boxes(self):
-        box_width = 40
+        box_width = 35  # Reduced from 40 to 35 to fit more letters
         box_height = 40
-        spacing = 10
+        spacing = 8     # Reduced from 10 to 8 to fit more letters
         
         # Calculate starting position to center the boxes
         total_width = 0
@@ -182,7 +186,8 @@ class MovieHangman:
             if char != ' ':
                 total_width += box_width + spacing
         
-        start_x = (SCREEN_WIDTH - total_width) // 2
+        # Use a smaller margin to start closer to the left edge when needed
+        start_x = max(20, (SCREEN_WIDTH - total_width) // 2)
         y = 200
         
         x = start_x
@@ -266,8 +271,11 @@ class MovieHangman:
                 kangaroo_x = (SCREEN_WIDTH - self.happy_kangaroo.get_width()) // 2
                 SCREEN.blit(self.happy_kangaroo, (kangaroo_x, 300))
                 
+                # Calculate how many seconds it took to win
+                time_taken = int(self.win_time - self.start_time)
+                
                 # Create a background rectangle for better text visibility
-                result_text = FONT.render("You saved the kangaroo!", True, BRIGHT_GREEN)
+                result_text = FONT.render(f"You saved the kangaroo in {time_taken} seconds!", True, BRIGHT_GREEN)
                 result_rect = result_text.get_rect(center=(SCREEN_WIDTH // 2, 550))
                 
                 # Draw a semi-transparent background behind the text
@@ -326,8 +334,13 @@ class MovieHangman:
             SCREEN.blit(self.noose, (noose_x, 250))
 
 def main():
+    # Parse command line arguments
+    parser = argparse.ArgumentParser(description='Movie Hangman Game')
+    parser.add_argument('-m', '--movie', help='Specify a movie title for testing')
+    args = parser.parse_args()
+    
     clock = pygame.time.Clock()
-    game = MovieHangman()
+    game = MovieHangman(args.movie)
     
     running = True
     while running:
@@ -338,7 +351,7 @@ def main():
                 if event.key == K_q:
                     running = False
                 elif event.key == K_r and game.game_over:
-                    game = MovieHangman()  # Reset the game
+                    game = MovieHangman(args.movie)  # Reset with same movie if specified
                 else:
                     game.handle_event(event)
         
